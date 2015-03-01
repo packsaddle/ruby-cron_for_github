@@ -9,6 +9,12 @@
 
 ## VS.
 
+### [Tachikoma.io](http://tachikoma.io)
+
+Dependency Update as a Service.
+This is only dependency update, so problem specific SaaS.
+If you NEVER want to maintenance your server (include Heroku), Tachikoma.io suits you.
+
 ## Installation
 
 Add this line to your application's Gemfile:
