@@ -1,6 +1,6 @@
 module CronForGithub
   class Ping
-    NAMESPACE = 'cron'
+    NAMESPACE = 'cron_for_github'
     BASE = 'master'
 
     def ping(params)
