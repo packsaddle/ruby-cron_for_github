@@ -2,6 +2,17 @@ module CronForGithub
   class Ping
     NAMESPACE = 'cron_for_github'
     BASE = 'master'
+    RESERVED_REFS = %w(
+      tags
+      gh-pages
+      master
+      branches
+      trunk
+      feature
+      develop
+      release
+      hotfix
+    )
 
     def ping(params)
       client = Client.new
