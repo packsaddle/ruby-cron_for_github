@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'cron_for_github'
+require 'cron_for_github/cli'
+CronForGithub::CLI.start(ARGV)
