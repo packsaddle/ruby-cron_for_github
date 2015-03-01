@@ -16,6 +16,8 @@ module CronForGithub
     desc 'clear', 'Delete cron branches'
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
+    option :slug, type: :string, required: true
+    option :namespace, type: :string, default: Ping::NAMESPACE
     def clear
       if options[:debug]
         logger.level = Logger::DEBUG
@@ -29,6 +31,9 @@ module CronForGithub
     desc 'ping', 'Kick cron'
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
+    option :slug, type: :string, required: true
+    option :namespace, type: :string, default: Ping::NAMESPACE
+    option :base, type: :string, default: Ping::BASE
     def ping
       if options[:debug]
         logger.level = Logger::DEBUG
