@@ -12,5 +12,11 @@ module CronForGithub
     def version
       puts "CronForGithub version #{::CronForGithub::VERSION}"
     end
+
+    no_commands do
+      def logger
+        ::CronForGithub.logger
+      end
+    end
   end
 end
