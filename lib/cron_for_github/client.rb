@@ -15,7 +15,7 @@ module CronForGithub
     def refs(slug, refs_prefix)
       client
         .refs(slug, refs_prefix)
-        .map{|obj| obj.ref }
+        .map(&:ref)
     end
 
     def delete_ref(slug, ref)
