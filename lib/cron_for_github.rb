@@ -1,4 +1,5 @@
 require 'logger'
+require 'octokit'
 
 require 'cron_for_github/version'
 
