@@ -1,5 +1,6 @@
 require 'logger'
 require 'octokit'
+require 'securerandom'
 
 require 'cron_for_github/client'
 require 'cron_for_github/error'
