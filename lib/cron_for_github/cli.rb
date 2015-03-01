@@ -26,7 +26,7 @@ module CronForGithub
       puts 'clear!'
     end
 
-    desc 'ping', 'kick cron'
+    desc 'ping', 'Kick cron'
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
     def ping
