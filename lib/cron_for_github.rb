@@ -1,6 +1,8 @@
 require 'logger'
 require 'octokit'
 
+require 'cron_for_github/client'
+require 'cron_for_github/ping'
 require 'cron_for_github/version'
 
 module CronForGithub
