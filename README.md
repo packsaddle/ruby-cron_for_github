@@ -9,11 +9,19 @@
 
 ## VS.
 
+### [traviscron.pythonanywhere.com](http://traviscron.pythonanywhere.com/)
+
+Good service for Travis-CI. This requires form submitting, and only for Travis-CI.
+
 ### [Tachikoma.io](http://tachikoma.io)
 
 Dependency Update as a Service.
 This is only dependency update, so problem specific SaaS.
 If you NEVER want to maintenance your server (include Heroku), Tachikoma.io suits you.
+
+### [zapier](https://zapier.com/)/[ifttt](https://ifttt.com/)
+
+I don't know how to achieve yet.
 
 ## Installation
 
