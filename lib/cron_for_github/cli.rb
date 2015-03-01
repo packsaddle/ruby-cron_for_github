@@ -25,7 +25,8 @@ module CronForGithub
         logger.level = Logger::INFO
       end
       logger.debug(options)
-      puts 'clear!'
+
+      Ping.new.clear(options.select { |k, _| [:slug, :namespace].include?(k) })
     end
 
     desc 'ping', 'Kick cron'
@@ -41,7 +42,8 @@ module CronForGithub
         logger.level = Logger::INFO
       end
       logger.debug(options)
-      puts 'ping!'
+
+      Ping.new.ping(options.select { |k, _| [:slug, :namespace, :base].include?(k) })
     end
 
     no_commands do
