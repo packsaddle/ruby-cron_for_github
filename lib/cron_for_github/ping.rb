@@ -10,7 +10,7 @@ module CronForGithub
       cron_ref = decide_cron_ref(params[:namespace])
 
       latest_sha = client.latest_sha(slug, head_ref)
-      client.create_branch(slug, cron_ref, latest_sha)
+      client.create_ref(slug, cron_ref, latest_sha)
     end
 
     def decide_slug(text)
@@ -27,8 +27,27 @@ module CronForGithub
       "heads/#{text}/#{SecureRandom.uuid}"
     end
 
-    def clear(_params)
-      puts 'clear!'
+    def clear(params)
+      client = Client.new
+      slug = decide_slug(params[:slug])
+      cron_refs_prefix = decide_cron_refs_prefix(params[:namespace])
+
+      cron_refs = client.refs(slug, cron_refs_prefix)
+      cron_refs
+        .map { |ref| convert_ref(ref) }
+        .each do |clear_ref|
+          client.delete_ref(slug, clear_ref)
+        end
+    end
+
+    # remove refs/ from "refs/heads/ping/foo-bar"
+    def convert_ref(ref)
+      ref
+    end
+
+    def decide_cron_refs_prefix(text)
+      text = NAMESPACE if !text || text.empty?
+      "heads/#{text}/"
     end
   end
 end

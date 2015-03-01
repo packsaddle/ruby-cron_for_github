@@ -8,8 +8,18 @@ module CronForGithub
       client.ref(slug, head_ref).object.sha
     end
 
-    def create_branch(slug, expected_ref, sha)
+    def create_ref(slug, expected_ref, sha)
       client.create_ref(slug, expected_ref, sha)
+    end
+
+    def refs(slug, refs_prefix)
+      client
+        .refs(slug, refs_prefix)
+        .map{|obj| obj.ref }
+    end
+
+    def delete_ref(slug, ref)
+      client.delete_ref(slug, ref)
     end
 
     def access_token
