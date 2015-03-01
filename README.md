@@ -23,6 +23,11 @@ If you NEVER want to maintenance your server (include Heroku), Tachikoma.io suit
 
 I don't know how to achieve yet.
 
+### Build periodically travis-ci/travis-ci
+
+We solve this! :)
+[Build periodically travis-ci/travis-ci](https://github.com/travis-ci/travis-ci/issues/582)
+
 ## Installation
 
 Add this line to your application's Gemfile:
