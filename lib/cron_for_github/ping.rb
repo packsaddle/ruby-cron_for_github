@@ -18,7 +18,7 @@ module CronForGithub
       client = Client.new
       slug = decide_slug(params[:slug])
       head_ref = decide_head_ref(params[:base])
-      cron_ref = decide_cron_ref(params[:namespace], :ping)
+      cron_ref = decide_cron_ref(params[:namespace], __method__)
 
       latest_sha = client.latest_sha(slug, head_ref)
       client.create_ref(slug, cron_ref, latest_sha)
