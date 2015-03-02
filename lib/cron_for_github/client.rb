@@ -5,13 +5,17 @@ module CronForGithub
     end
 
     def latest_sha(slug, head_ref)
-      client.ref(slug, head_ref).object.sha
+      response = client.ref(slug, head_ref)
+      logger.debug(response)
+      response.object.sha
     end
 
     def create_ref(slug, expected_ref, sha)
-      return_ref = client.create_ref(slug, expected_ref, sha)
-      logger.info('create ref')
+      logger.info('ref creating')
       logger.info(slug: slug, ref: expected_ref)
+      return_ref = client.create_ref(slug, expected_ref, sha)
+      logger.info('ref created')
+      logger.debug(return_ref)
       return_ref
     end
 
@@ -23,9 +27,11 @@ module CronForGithub
     end
 
     def delete_ref(slug, ref)
-      return_ref = client.delete_ref(slug, ref)
-      logger.info('delete ref')
+      logger.info('ref deleting')
       logger.info(slug: slug, ref: ref)
+      return_ref = client.delete_ref(slug, ref)
+      logger.info('ref deleted')
+      logger.debug(return_ref)
       return_ref
     end
 
