@@ -5,7 +5,50 @@
 
 ## Usage
 
+**Cron for GitHub**, you can kick GitHub by creating branch. This also wakes web-hooks up!
+
+```
+$ cron-for-github ping --slug=YOU/YOUR_REPO
+```
+
+After few seconds, your repo has a new branch `cron_for_github/da0535a2-9523-42e3-bae2-a2e682b2f437`.
+`da0535a2-9523-42e3-bae2-a2e682b2f437` is uuid.
+
 ## Command
+
+```
+Commands:
+  cron-for-github clear --slug=SLUG  # Delete cron branches
+  cron-for-github help [COMMAND]     # Describe available commands or one specific command
+  cron-for-github ping --slug=SLUG   # Kick cron
+  cron-for-github version            # Show the CronForGithub version
+
+Usage:
+  cron-for-github ping --slug=SLUG
+
+Options:
+  [--debug], [--no-debug]
+  [--verbose], [--no-verbose]
+  --slug=SLUG
+  [--namespace=NAMESPACE]
+                               # Default: cron_for_github
+  [--base=BASE]
+                               # Default: master
+
+Kick cron
+
+Usage:
+  cron-for-github clear --slug=SLUG
+
+Options:
+  [--debug], [--no-debug]
+  [--verbose], [--no-verbose]
+  --slug=SLUG
+  [--namespace=NAMESPACE]
+                               # Default: cron_for_github
+
+Delete cron branches
+```
 
 ## VS.
 
@@ -43,6 +86,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cron_for_github
+
+## Requirement
+
+Set `GITHUB_ACCESS_TOKEN=__your_access_token__` to your environment variable.
 
 ## Development
 
