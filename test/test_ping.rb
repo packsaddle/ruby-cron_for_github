@@ -14,5 +14,23 @@ module CronForGithub
         end
       end
     end
+
+    sub_test_case '#decide_head_ref' do
+      test 'no params' do
+        assert do
+          @ping.decide_head_ref(nil) == 'heads/master'
+        end
+      end
+      test 'empty params' do
+        assert do
+          @ping.decide_head_ref('') == 'heads/master'
+        end
+      end
+      test 'set anything' do
+        assert do
+          @ping.decide_head_ref('anything') == 'heads/anything'
+        end
+      end
+    end
   end
 end
