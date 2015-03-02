@@ -71,10 +71,12 @@ module CronForGithub
           @ping.decide_cron_ref('any', :ping).start_with?('heads/any/')
         end
       end
-      test 'call reserved ref' do
+      test 'call reserved ref not raise' do
         assert_nothing_raised do
           @ping.decide_cron_ref('tags', :ping)
         end
+      end
+      test 'call reserved ref use itself' do
         assert do
           @ping.decide_cron_ref('tags', :ping).start_with?('heads/tags/')
         end
