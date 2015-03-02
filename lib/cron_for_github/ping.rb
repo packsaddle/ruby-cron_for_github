@@ -34,8 +34,7 @@ module CronForGithub
     end
 
     def decide_cron_ref(text)
-      text = NAMESPACE if !text || text.empty?
-      "heads/#{text}/#{SecureRandom.uuid}"
+      "heads/#{decide_cron_refs_prefix(text)}/#{SecureRandom.uuid}"
     end
 
     def clear(params)
