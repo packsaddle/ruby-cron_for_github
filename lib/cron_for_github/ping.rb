@@ -18,7 +18,7 @@ module CronForGithub
       client = Client.new
       slug = decide_slug(params[:slug])
       head_ref = decide_head_ref(params[:base])
-      cron_ref = decide_cron_ref(params[:namespace])
+      cron_ref = decide_cron_ref(params[:namespace], :ping)
 
       latest_sha = client.latest_sha(slug, head_ref)
       client.create_ref(slug, cron_ref, latest_sha)
@@ -33,8 +33,8 @@ module CronForGithub
       "heads/#{text}"
     end
 
-    def decide_cron_ref(text)
-      "heads/#{decide_cron_refs_prefix(text)}/#{SecureRandom.uuid}"
+    def decide_cron_ref(text, caller = nil)
+      "heads/#{decide_cron_refs_prefix(text, caller)}/#{SecureRandom.uuid}"
     end
 
     def clear(params)
@@ -49,8 +49,12 @@ module CronForGithub
         end
     end
 
-    def decide_cron_refs_prefix(text)
-      text = NAMESPACE if !text || text.empty?
+    def decide_cron_refs_prefix(text, caller = nil)
+      if caller == :ping
+        text = NAMESPACE if !text || text.empty?
+      else
+        text = NAMESPACE if !text || text.empty?
+      end
       "heads/#{text}/"
     end
   end
