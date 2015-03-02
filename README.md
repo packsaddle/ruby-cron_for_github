@@ -14,6 +14,10 @@ $ cron-for-github ping --slug=YOU/YOUR_REPO
 After few seconds, your repo has a new branch `cron_for_github/da0535a2-9523-42e3-bae2-a2e682b2f437`.
 `da0535a2-9523-42e3-bae2-a2e682b2f437` is uuid.
 
+## Easy to use
+
+[Cron for GitHub on Heroku](https://github.com/packsaddle/ruby-cron_for_github-app)
+
 ## Command
 
 ```
