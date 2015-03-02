@@ -50,7 +50,7 @@ module CronForGithub
     end
 
     def decide_cron_refs_prefix(text, caller = nil)
-      if caller == :ping
+      if caller != :ping
         text = NAMESPACE if !text || text.empty?
       else
         text = NAMESPACE if !text || text.empty?
