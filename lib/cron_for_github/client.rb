@@ -24,6 +24,10 @@ module CronForGithub
         .refs(slug, refs_prefix)
         .map(&:ref)
         .map { |ref| remove_prefix_refs(ref) }
+    rescue Octokit::NotFound
+      logger.info('no repos exist:')
+      logger.info(slug: slug, refs_prefix: refs_prefix)
+      []
     end
 
     def delete_ref(slug, ref)
