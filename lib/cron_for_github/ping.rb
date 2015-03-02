@@ -50,15 +50,11 @@ module CronForGithub
     end
 
     def decide_cron_ref_prefix(text, caller = nil)
-      if caller != :ping
-        if RESERVED_REFS.include?(text)
-          fail ReservedNamespaceError, \
-               %("#{text}" is reserved. List: #{RESERVED_REFS.join(', ')})
-        end
-        text = NAMESPACE if !text || text.empty?
-      else
-        text = NAMESPACE if !text || text.empty?
+      if caller != :ping && RESERVED_REFS.include?(text)
+        fail ReservedNamespaceError, \
+             %("#{text}" is reserved. List: #{RESERVED_REFS.join(', ')})
       end
+      text = NAMESPACE if !text || text.empty?
       "heads/#{text}/"
     end
   end
