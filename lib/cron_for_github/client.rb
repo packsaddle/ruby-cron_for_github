@@ -9,7 +9,10 @@ module CronForGithub
     end
 
     def create_ref(slug, expected_ref, sha)
-      client.create_ref(slug, expected_ref, sha)
+      return_ref = client.create_ref(slug, expected_ref, sha)
+      logger.info('create ref')
+      logger.info(slug: slug, ref: expected_ref)
+      return_ref
     end
 
     def refs(slug, refs_prefix)
@@ -20,7 +23,10 @@ module CronForGithub
     end
 
     def delete_ref(slug, ref)
-      client.delete_ref(slug, ref)
+      return_ref = client.delete_ref(slug, ref)
+      logger.info('delete ref')
+      logger.info(slug: slug, ref: ref)
+      return_ref
     end
 
     def access_token
@@ -33,6 +39,10 @@ module CronForGithub
       match = regex.match(ref)
       fail InvalidRefPrefixError, "ref: #{ref}" unless match
       match[:stripped_ref]
+    end
+
+    def logger
+      ::CronForGithub.logger
     end
   end
 end
