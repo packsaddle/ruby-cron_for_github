@@ -27,6 +27,12 @@ module CronForGithub
       logger.debug(options)
 
       Ping.new.clear(options.select { |k, _| [:slug, :namespace].include?(k) })
+    rescue StandardError => e
+      logger.error 'Please report from here:'
+      logger.error ISSUE_URL
+      logger.error 'options:'
+      logger.error options
+      raise e
     end
 
     desc 'ping', 'Kick cron'
@@ -44,6 +50,12 @@ module CronForGithub
       logger.debug(options)
 
       Ping.new.ping(options.select { |k, _| [:slug, :namespace, :base].include?(k) })
+    rescue StandardError => e
+      logger.error 'Please report from here:'
+      logger.error ISSUE_URL
+      logger.error 'options:'
+      logger.error options
+      raise e
     end
 
     no_commands do

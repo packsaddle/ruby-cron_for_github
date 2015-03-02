@@ -8,6 +8,7 @@ require 'cron_for_github/ping'
 require 'cron_for_github/version'
 
 module CronForGithub
+  ISSUE_URL = 'https://github.com/packsaddle/ruby-cron_for_github/issues/new'
   def self.default_logger
     logger = Logger.new(STDERR)
     logger.progname = 'CronForGithub'
