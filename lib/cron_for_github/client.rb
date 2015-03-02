@@ -34,5 +34,9 @@ module CronForGithub
       fail InvalidRefPrefixError, "ref: #{ref}" unless match
       match[:stripped_ref]
     end
+
+    def logger
+      ::CronForGithub.logger
+    end
   end
 end

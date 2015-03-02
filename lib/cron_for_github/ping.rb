@@ -57,5 +57,9 @@ module CronForGithub
       text = NAMESPACE if !text || text.empty?
       "heads/#{text}/"
     end
+
+    def logger
+      ::CronForGithub.logger
+    end
   end
 end
