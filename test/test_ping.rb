@@ -49,6 +49,36 @@ module CronForGithub
           @ping.decide_cron_ref_prefix('any', :ping) == 'heads/any/'
         end
       end
+      test 'call reserved ref' do
+        assert_raise(ReservedNamespaceError) do
+          @ping.decide_cron_ref_prefix('tags')
+        end
+      end
+    end
+    sub_test_case '#decide_cron_ref' do
+      test 'caller is ping and no params' do
+        assert do
+          @ping.decide_cron_ref(nil, :ping).start_with?('heads/cron_for_github/')
+        end
+      end
+      test 'caller is ping and empty params' do
+        assert do
+          @ping.decide_cron_ref('', :ping).start_with?('heads/cron_for_github/')
+        end
+      end
+      test 'caller is ping and set any params' do
+        assert do
+          @ping.decide_cron_ref('any', :ping).start_with?('heads/any/')
+        end
+      end
+      test 'call reserved ref' do
+        assert_nothing_raised do
+          @ping.decide_cron_ref('tags', :ping)
+        end
+        assert do
+          @ping.decide_cron_ref('tags', :ping).start_with?('heads/tags/')
+        end
+      end
     end
   end
 end
