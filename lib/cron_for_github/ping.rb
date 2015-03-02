@@ -18,7 +18,7 @@ module CronForGithub
       client = Client.new
       slug = decide_slug(params[:slug])
       head_ref = decide_head_ref(params[:base])
-      cron_ref = decide_cron_ref(params[:namespace])
+      cron_ref = decide_cron_ref(params[:namespace], __method__)
 
       latest_sha = client.latest_sha(slug, head_ref)
       client.create_ref(slug, cron_ref, latest_sha)
@@ -33,24 +33,27 @@ module CronForGithub
       "heads/#{text}"
     end
 
-    def decide_cron_ref(text)
-      text = NAMESPACE if !text || text.empty?
-      "heads/#{text}/#{SecureRandom.uuid}"
+    def decide_cron_ref(text, caller = nil)
+      "#{decide_cron_ref_prefix(text, caller)}#{SecureRandom.uuid}"
     end
 
     def clear(params)
       client = Client.new
       slug = decide_slug(params[:slug])
-      cron_refs_prefix = decide_cron_refs_prefix(params[:namespace])
+      cron_ref_prefix = decide_cron_ref_prefix(params[:namespace])
 
-      cron_refs = client.refs(slug, cron_refs_prefix)
+      cron_refs = client.refs(slug, cron_ref_prefix)
       cron_refs
         .each do |clear_ref|
           client.delete_ref(slug, clear_ref)
         end
     end
 
-    def decide_cron_refs_prefix(text)
+    def decide_cron_ref_prefix(text, caller = nil)
+      if caller != :ping && RESERVED_REFS.include?(text)
+        fail ReservedNamespaceError, \
+             %("#{text}" is reserved. List: #{RESERVED_REFS.join(', ')})
+      end
       text = NAMESPACE if !text || text.empty?
       "heads/#{text}/"
     end
