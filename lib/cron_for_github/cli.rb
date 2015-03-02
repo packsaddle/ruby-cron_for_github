@@ -25,8 +25,12 @@ module CronForGithub
         logger.level = Logger::INFO
       end
       logger.debug(options)
+      params = {
+        slug: options[:slug],
+        namespace: options[:namespace]
+      }
 
-      Ping.new.clear(options.select { |k, _| [:slug, :namespace].include?(k) })
+      Ping.new.clear(params)
     rescue StandardError => e
       logger.error 'Please report from here:'
       logger.error ISSUE_URL
@@ -48,8 +52,12 @@ module CronForGithub
         logger.level = Logger::INFO
       end
       logger.debug(options)
-
-      Ping.new.ping(options.select { |k, _| [:slug, :namespace, :base].include?(k) })
+      params = {
+        slug: options[:slug],
+        namespace: options[:namespace],
+        base: options[:base]
+      }
+      Ping.new.ping(params)
     rescue StandardError => e
       logger.error 'Please report from here:'
       logger.error ISSUE_URL
