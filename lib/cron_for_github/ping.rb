@@ -34,22 +34,22 @@ module CronForGithub
     end
 
     def decide_cron_ref(text, caller = nil)
-      "heads/#{decide_cron_refs_prefix(text, caller)}#{SecureRandom.uuid}"
+      "heads/#{decide_cron_ref_prefix(text, caller)}#{SecureRandom.uuid}"
     end
 
     def clear(params)
       client = Client.new
       slug = decide_slug(params[:slug])
-      cron_refs_prefix = decide_cron_refs_prefix(params[:namespace])
+      cron_ref_prefix = decide_cron_ref_prefix(params[:namespace])
 
-      cron_refs = client.refs(slug, cron_refs_prefix)
+      cron_refs = client.refs(slug, cron_ref_prefix)
       cron_refs
         .each do |clear_ref|
           client.delete_ref(slug, clear_ref)
         end
     end
 
-    def decide_cron_refs_prefix(text, caller = nil)
+    def decide_cron_ref_prefix(text, caller = nil)
       if caller != :ping
         text = NAMESPACE if !text || text.empty?
       else

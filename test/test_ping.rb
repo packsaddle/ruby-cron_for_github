@@ -33,20 +33,20 @@ module CronForGithub
       end
     end
 
-    sub_test_case '#decide_cron_refs_prefix' do
+    sub_test_case '#decide_cron_ref_prefix' do
       test 'caller is ping and no params' do
         assert do
-          @ping.decide_cron_refs_prefix(nil, :ping) == 'heads/cron_for_github/'
+          @ping.decide_cron_ref_prefix(nil, :ping) == 'heads/cron_for_github/'
         end
       end
       test 'caller is ping and empty params' do
         assert do
-          @ping.decide_cron_refs_prefix('', :ping) == 'heads/cron_for_github/'
+          @ping.decide_cron_ref_prefix('', :ping) == 'heads/cron_for_github/'
         end
       end
       test 'caller is ping and set any params' do
         assert do
-          @ping.decide_cron_refs_prefix('any', :ping) == 'heads/any/'
+          @ping.decide_cron_ref_prefix('any', :ping) == 'heads/any/'
         end
       end
     end
