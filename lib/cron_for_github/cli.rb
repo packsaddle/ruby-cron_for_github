@@ -19,23 +19,15 @@ module CronForGithub
     option :slug, type: :string, required: true
     option :namespace, type: :string, default: Ping::NAMESPACE
     def clear
-      if options[:debug]
-        logger.level = Logger::DEBUG
-      elsif options[:verbose]
-        logger.level = Logger::INFO
-      end
-      logger.debug(options)
+      setup_logger(options)
+
       params = {
         slug: options[:slug],
         namespace: options[:namespace]
       }
-
       Ping.new.clear(params)
     rescue StandardError => e
-      logger.error 'Please report from here:'
-      logger.error ISSUE_URL
-      logger.error 'options:'
-      logger.error options
+      suggest_messages(options)
       raise e
     end
 
@@ -46,12 +38,8 @@ module CronForGithub
     option :namespace, type: :string, default: Ping::NAMESPACE
     option :base, type: :string, default: Ping::BASE
     def ping
-      if options[:debug]
-        logger.level = Logger::DEBUG
-      elsif options[:verbose]
-        logger.level = Logger::INFO
-      end
-      logger.debug(options)
+      setup_logger(options)
+
       params = {
         slug: options[:slug],
         namespace: options[:namespace],
@@ -59,16 +47,29 @@ module CronForGithub
       }
       Ping.new.ping(params)
     rescue StandardError => e
-      logger.error 'Please report from here:'
-      logger.error ISSUE_URL
-      logger.error 'options:'
-      logger.error options
+      suggest_messages(options)
       raise e
     end
 
     no_commands do
       def logger
         ::CronForGithub.logger
+      end
+
+      def setup_logger(options)
+        if options[:debug]
+          logger.level = Logger::DEBUG
+        elsif options[:verbose]
+          logger.level = Logger::INFO
+        end
+        logger.debug(options)
+      end
+
+      def suggest_messages(options)
+        logger.error 'Please report from here:'
+        logger.error ISSUE_URL
+        logger.error 'options:'
+        logger.error options
       end
     end
   end
