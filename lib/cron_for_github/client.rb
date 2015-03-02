@@ -29,9 +29,9 @@ module CronForGithub
 
     # remove refs/ from "refs/heads/ping/foo-bar"
     def remove_prefix_refs(ref)
-      regex = %r{\Arefs/(?<stripped_ref>.*)\Z}
+      regex = %r{\Arefs/(?<stripped_ref>.+)\Z}
       match = regex.match(ref)
-      fail InvalidRefPrefixError, "ref: #{ref}" if !match || match[:stripped_ref].empty?
+      fail InvalidRefPrefixError, "ref: #{ref}" unless match
       match[:stripped_ref]
     end
   end
