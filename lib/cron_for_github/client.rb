@@ -16,6 +16,7 @@ module CronForGithub
       client
         .refs(slug, refs_prefix)
         .map(&:ref)
+        .map { |ref| remove_prefix_refs(ref) }
     end
 
     def delete_ref(slug, ref)
@@ -24,6 +25,11 @@ module CronForGithub
 
     def access_token
       ENV['GITHUB_ACCESS_TOKEN']
+    end
+
+    # remove refs/ from "refs/heads/ping/foo-bar"
+    def remove_prefix_refs(ref)
+      ref
     end
   end
 end

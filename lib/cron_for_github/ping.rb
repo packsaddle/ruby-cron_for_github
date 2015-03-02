@@ -45,15 +45,9 @@ module CronForGithub
 
       cron_refs = client.refs(slug, cron_refs_prefix)
       cron_refs
-        .map { |ref| convert_ref(ref) }
         .each do |clear_ref|
           client.delete_ref(slug, clear_ref)
         end
-    end
-
-    # remove refs/ from "refs/heads/ping/foo-bar"
-    def convert_ref(ref)
-      ref
     end
 
     def decide_cron_refs_prefix(text)
