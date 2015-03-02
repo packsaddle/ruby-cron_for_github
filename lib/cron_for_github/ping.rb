@@ -34,7 +34,7 @@ module CronForGithub
     end
 
     def decide_cron_ref(text, caller = nil)
-      "heads/#{decide_cron_refs_prefix(text, caller)}/#{SecureRandom.uuid}"
+      "heads/#{decide_cron_refs_prefix(text, caller)}#{SecureRandom.uuid}"
     end
 
     def clear(params)
