@@ -5,7 +5,7 @@
 
 ## Usage
 
-**Cron for GitHub**, you can kick GitHub by creating branch. This also wakes web-hooks up!
+**Cron for GitHub**, Kick GitHub by creating branch. This also wakes *web-hooks* up!
 
 ```
 $ cron-for-github ping --slug=YOU/YOUR_REPO
@@ -54,26 +54,27 @@ Options:
 Delete cron branches
 ```
 
+## Motivation
+
+We solve this! :)
+[Build periodically travis-ci/travis-ci](https://github.com/travis-ci/travis-ci/issues/582)
+
 ## VS.
 
-### [traviscron.pythonanywhere.com](http://traviscron.pythonanywhere.com/)
+### [The Travis CI cron trigger](http://traviscron.pythonanywhere.com/)
 
-Good service for Travis-CI. This requires form submitting, and only for Travis-CI.
+Good service for Travis-CI.
+The Travis CI cron trigger requires form submitting, and only for Travis-CI.
 
 ### [Tachikoma.io](http://tachikoma.io)
 
 Dependency Update as a Service.
-This is only dependency update, so problem specific SaaS.
+Tachikoma.io is only dependency update, so problem specific SaaS.
 If you NEVER want to maintenance your server (include Heroku), Tachikoma.io suits you.
 
 ### [zapier](https://zapier.com/)/[ifttt](https://ifttt.com/)
 
-I don't know how to achieve yet.
-
-### Build periodically travis-ci/travis-ci
-
-We solve this! :)
-[Build periodically travis-ci/travis-ci](https://github.com/travis-ci/travis-ci/issues/582)
+We don't know how to achieve yet.
 
 ## Installation
 
