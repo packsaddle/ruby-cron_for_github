@@ -5,7 +5,7 @@
 
 ## Usage
 
-**Cron for GitHub**, you can kick GitHub by creating branch. This also wakes web-hooks up!
+**Cron for GitHub**, Kick GitHub by creating branch. This also wakes *web-hooks* up!
 
 ```
 $ cron-for-github ping --slug=YOU/YOUR_REPO
